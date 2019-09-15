@@ -1,10 +1,14 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="mellon-slack-module",
+    name="mellon-slack-service",
     version="0.0.1",
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    install_requires=["flask", "mellon-common", "slackclient"],
+    install_requires=[
+        "mellon-common",
+        "mellon-app-core",
+         "slackclient"
+         ],
 )

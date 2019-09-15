@@ -1,3 +1,2 @@
-mellon-common
-flask
+git+https://github.com/sweetrpg/mellon-common.git@develop
 slackclient
