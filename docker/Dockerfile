@@ -10,8 +10,8 @@ RUN apt-get -q update                    \
 RUN mkdir -p /opt/flask-app/
 
 COPY config/flask-app.ini /opt/flask-app
-COPY mellon_core_service /opt/flask-app/
-RUN ls -lR /opt/flask-app
+COPY mellon_slack_service /opt/flask-app/
+# RUN ls -lR /opt/flask-app
 
 WORKDIR /opt/flask-app
 ENV HOME=/opt/flask-app
@@ -24,13 +24,10 @@ ENV CSRF_SESSION_KEY="CSRF_SESSION_KEY_HERE"
 ENV SECRET_KEY="SECRET_KEY_HERE"
 ENV SLACK_APP_ID="SLACK_APP_ID_HERE"
 ENV SENTRY_DSN="SENTRY_DSN_HERE"
-ENV HOST="0.0.0.0"
-ENV PORT="5000"
 
 COPY requirements.txt /opt/flask-app
 RUN pip3 install -r requirements.txt
 
 EXPOSE 5000
 
-CMD [ "flask", "run", "-h", "${HOST}", "-p", "${PORT}" ]
-# CMD [ "waitress-serve", "--call", "mellon_slack_service:create_app" ]
+CMD [ "flask", "run", "-h", "0.0.0.0", "-p", "5000" ]
